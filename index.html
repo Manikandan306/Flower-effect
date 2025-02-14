@@ -313,6 +313,57 @@
       <p>May your life bloom with joy<br>and happiness always</p>
     </div>
   </div>
+
+  <!-- <audio id="bgAudio" loop autoplay muted>
+    <source src="minaley.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    // Unmute and play after user interaction
+    window.addEventListener('DOMContentLoaded', () => {
+        const audio = document.getElementById('bgAudio');
+
+        // Detect any user interaction and play audio
+        document.addEventListener('click', () => {
+            audio.muted = false;
+            audio.play().catch(error => console.error('Autoplay failed:', error));
+        }, { once: true });
+    });
+</script> -->
+
+<audio id="bgAudio" autoplay loop muted>
+  <source src="minaley.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const audio = document.getElementById('bgAudio');
+
+  // 1️⃣ Unmute and play after a delay
+  setTimeout(() => {
+    audio.muted = false;
+    audio.play().catch(err => console.warn('Autoplay attempt failed:', err));
+  }, 2000);
+
+  // 2️⃣ Ensure unmute on any user interaction
+  document.addEventListener('click', () => {
+    audio.muted = false;
+    audio.play().catch(err => console.error('Interaction play failed:', err));
+  }, { once: true });
+
+  // 3️⃣ Restart if playback stops
+  audio.addEventListener('ended', () => {
+    audio.currentTime = 0;
+    audio.play();
+  });
+</script>
+
+
+
+
+
+
     <script src="main.js"></script>
   </body>
 </html>
